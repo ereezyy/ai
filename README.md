@@ -1,9 +1,21 @@
 # AI Toolkit - Comprehensive Artificial Intelligence Development Suite
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-2.0%2B-orange.svg)
-![PyTorch](https://img.shields.io/badge/PyTorch-1.9%2B-red.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
+<div align="center">
+
+![AI Toolkit Banner](ai_toolkit_banner.png)
+
+![AI Toolkit Logo](ai_toolkit_logo.png)
+
+[![Made by ereezyy](https://img.shields.io/badge/Made%20by-ereezyy-blue?style=for-the-badge&logo=github)](https://github.com/ereezyy)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python)](https://python.org)
+[![AI/ML](https://img.shields.io/badge/AI%2FML-TensorFlow%20%7C%20PyTorch-purple?style=for-the-badge)](https://tensorflow.org)
+[![MIT License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+
+**🧠 Machine Learning • 🤖 Deep Learning • ⚡ AutoML • 🚀 Model Deployment**
+
+</div>
+
+---
 
 ## Overview
 
