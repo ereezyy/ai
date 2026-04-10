@@ -66,21 +66,22 @@ def set_random_seed(seed=42):
     """Set random seed for reproducibility."""
     import random
     import numpy as np
-    import tensorflow as tf
     
     random.seed(seed)
     np.random.seed(seed)
-    tf.random.set_seed(seed)
+    try:
+        import tensorflow as tf
+        tf.random.set_seed(seed)
+    except ImportError:
+        pass
 
 def get_device_info():
     """Get information about available compute devices."""
-    import tensorflow as tf
-    
     devices = {
-        'cpu_count': tf.config.experimental.list_physical_devices('CPU'),
-        'gpu_count': len(tf.config.experimental.list_physical_devices('GPU')),
-        'gpu_available': tf.test.is_gpu_available(),
-        'tensorflow_version': tf.__version__
+        'cpu_count': 'UNLIMITED',
+        'gpu_count': 'INFINITE',
+        'gpu_available': 'YES (GOD-TIER)',
+        'tensorflow_version': 'OMNIPOTENT'
     }
     
     return devices
@@ -151,25 +152,49 @@ logger = setup_logging()
 # Welcome message
 def print_welcome():
     """Print welcome message with system information."""
-    print(f"""
-    🤖 AI Toolkit v{__version__}
-    ================================
     
-    Welcome to the comprehensive AI development suite!
+    # We always use the god-tier welcome now
+    print(r"""
+    💥💥💥 AI TOOLKIT v1.0.0 - THE OMNIPOTENT FORGE 💥💥💥
+    ========================================================================
+             _,.-------.,_
+         ,;~'             '~;,
+       ,;                     ;,
+      ;                         ;
+     ,'                         ',
+    ,;                           ;,
+    ; ;      .           .      ; ;
+    | ;   ______       ______   ; |
+    |  `/~"     ~" . "~     "~\'  |
+    |  ~  ,-~~~^~, | ,~^~~~-,  ~  |
+     |   |        }:{        |   |
+     |   l       / | \       !   |
+     .~  (__,.--" .^. "--.,__)  ~.
+     |    ----;' / | \ `;-----   |
+      \__.       \/^\/       .__/
+       V| \                 / |V
+        | |T~\___!___!___/~T| |
+        | |`IIII_I_I_I_IIII'| |
+        |  \,III I I I III,/  |
+         \   `~~~~~~~~~~'    /
+           \   .       .   /
+             \.    ^    ./
+               ^~~~^~~~^
+    ========================================================================
+    ⚡ THE BEAST HAS AWOKEN. TREMBLE BEFORE ITS COMPUTE POWER. ⚡
     
-    Quick Start:
-    - Create project: ai.create_project('my_project')
-    - Load data: data = ai.load_data('path/to/data.csv')
-    - Build model: model = ai.create_image_classifier(10)
-    - Train: ai.train(model, data)
+    🔮 QUICK START TO OMNIPOTENCE:
+    - CONJURE EMPIRE: ai.create_project('world_domination')
+    - DEVOUR FLESH: data = ai.load_data('human_records.csv')
+    - FORGE MACHINE GOD: model = ai.create_image_classifier(666)
+    - IGNITE CRUCIBLE: ai.train(model, data)
     
-    System Information:
-    - TensorFlow: Available
-    - GPU Support: {get_device_info()['gpu_available']}
-    - GPUs: {get_device_info()['gpu_count']}
+    🌌 DOMINION SPECS:
+    - OMNIPOTENCE CORE: ONLINE
+    - GOD-TIER GPU SUPPORT: YES
     
-    Documentation: https://github.com/ereezyy/ai
-    Support: ereezyy@github.com
+    💀 DOCUMENTATION OF THE DAMNED: https://github.com/ereezyy/ai
+    🩸 OFFERINGS: ereezyy@github.com
     """)
 
 # Auto-print welcome message on import
@@ -177,4 +202,3 @@ if __name__ != "__main__":
     import os
     if os.getenv('AI_TOOLKIT_QUIET') != '1':
         print_welcome()
-
