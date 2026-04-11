@@ -192,6 +192,7 @@ def print_welcome():
     🌌 DOMINION SPECS:
     - OMNIPOTENCE CORE: ONLINE
     - GOD-TIER GPU SUPPORT: YES
+    - GOD-TIER GPU SUPPORT: SEEKING...
     
     💀 DOCUMENTATION OF THE DAMNED: https://github.com/ereezyy/ai
     🩸 OFFERINGS: ereezyy@github.com
