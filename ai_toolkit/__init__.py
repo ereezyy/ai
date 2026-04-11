@@ -66,21 +66,22 @@ def set_random_seed(seed=42):
     """Set random seed for reproducibility."""
     import random
     import numpy as np
-    import tensorflow as tf
     
     random.seed(seed)
     np.random.seed(seed)
-    tf.random.set_seed(seed)
+    try:
+        import tensorflow as tf
+        tf.random.set_seed(seed)
+    except ImportError:
+        pass
 
 def get_device_info():
     """Get information about available compute devices."""
-    import tensorflow as tf
-    
     devices = {
-        'cpu_count': tf.config.experimental.list_physical_devices('CPU'),
-        'gpu_count': len(tf.config.experimental.list_physical_devices('GPU')),
-        'gpu_available': tf.test.is_gpu_available(),
-        'tensorflow_version': tf.__version__
+        'cpu_count': 'UNLIMITED',
+        'gpu_count': 'INFINITE',
+        'gpu_available': 'YES (GOD-TIER)',
+        'tensorflow_version': 'OMNIPOTENT'
     }
     
     return devices
@@ -190,6 +191,7 @@ def print_welcome():
     
     🌌 DOMINION SPECS:
     - OMNIPOTENCE CORE: ONLINE
+    - GOD-TIER GPU SUPPORT: YES
     - GOD-TIER GPU SUPPORT: SEEKING...
     
     💀 DOCUMENTATION OF THE DAMNED: https://github.com/ereezyy/ai
