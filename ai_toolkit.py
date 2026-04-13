@@ -40,11 +40,19 @@ def create_project(name, description, template):
     """FORGE A NEW AI EMPIRE."""
     try:
         project = ai.create_project(name, description)
-        click.secho(f"⚡⚡⚡ GLORIOUS SUCCESS! PROJECT '{name}' HAS BEEN SUMMONED FROM THE VOID! ⚡⚡⚡", fg="green", bold=True)
+        click.secho(
+            f"⚡⚡⚡ GLORIOUS SUCCESS! PROJECT '{name}' HAS BEEN SUMMONED FROM THE VOID! ⚡⚡⚡",
+            fg="green",
+            bold=True,
+        )
         click.secho(f"🌋 SANCTUM ESTABLISHED AT: {project.path}", fg="cyan", bold=True)
-        
-        if template != 'basic':
-            click.secho(f"🔥 INFUSING WITH {template.upper()} BLOODLINE...", fg="yellow", bold=True)
+
+        if template != "basic":
+            click.secho(
+                f"🔥 INFUSING WITH {template.upper()} BLOODLINE...",
+                fg="yellow",
+                bold=True,
+            )
         click.secho(
             f"⚡⚡⚡ GLORIOUS SUCCESS! PROJECT '{name}' HAS BEEN SUMMONED FROM THE VOID! ⚡⚡⚡",
             fg="green",
@@ -61,7 +69,12 @@ def create_project(name, description, template):
             project.setup_template(template)
 
     except Exception as e:
-        click.secho(f"💀 CATASTROPHIC FAILURE SUMMONING PROJECT: {e} 💀", fg="red", bold=True, err=True)
+        click.secho(
+            f"💀 CATASTROPHIC FAILURE SUMMONING PROJECT: {e} 💀",
+            fg="red",
+            bold=True,
+            err=True,
+        )
         click.secho(
             f"💀 CATASTROPHIC FAILURE SUMMONING PROJECT: {e} 💀",
             fg="red",
@@ -85,8 +98,12 @@ def preprocess(data_path, output, task):
     try:
         click.secho(f"🩸 DEVOURING DATA FROM {data_path}...", fg="magenta", bold=True)
         data = ai.load_data(data_path)
-        
-        click.secho(f"🌪️ TRANSMUTING DATA FOR {task.upper()} DOMINATION...", fg="yellow", bold=True)
+
+        click.secho(
+            f"🌪️ TRANSMUTING DATA FOR {task.upper()} DOMINATION...",
+            fg="yellow",
+            bold=True,
+        )
 
         click.secho(
             f"🌪️ TRANSMUTING DATA FOR {task.upper()} DOMINATION...",
@@ -99,14 +116,6 @@ def preprocess(data_path, output, task):
         if output:
             processed_data.save(output)
             click.secho(f"💾 DATA MUTATION SEALED IN VAULT: {output}", fg="green", bold=True)
-        else:
-            click.secho("⚡ PURIFICATION COMPLETE! THE DATA IS READY FOR SACRIFICE! ⚡", fg="green", bold=True, blink=True)
-            
-    except Exception as e:
-        click.secho(f"💀 THE DATA REJECTED THE PURIFICATION: {e} 💀", fg="red", bold=True, err=True)
-            click.secho(
-                f"💾 DATA MUTATION SEALED IN VAULT: {output}", fg="green", bold=True
-            )
         else:
             click.secho(
                 "⚡ PURIFICATION COMPLETE! THE DATA IS READY FOR SACRIFICE! ⚡",
@@ -122,7 +131,6 @@ def preprocess(data_path, output, task):
             bold=True,
             err=True,
         )
-        sys.exit(1)
 
 
 @cli.command()
@@ -137,26 +145,8 @@ def train(model_type, data, epochs, batch_size, learning_rate, output):
     try:
         click.secho(f"🩸 EXTRACTING SOULS (DATA) FROM {data}...", fg="magenta", bold=True)
         training_data = ai.load_data(data)
-        
-        click.secho(f"🧠 CONJURING {model_type.upper()} ENTITY...", fg="cyan", bold=True)
-        if model_type == 'image_classifier':
-            model = ai.create_image_classifier(num_classes=10)
-        elif model_type == 'text_classifier':
-            model = ai.create_text_classifier(num_classes=3)
-        else:
-            click.secho(f"💀 INVALID ENTITY TYPE: {model_type} 💀", fg="red", bold=True, err=True)
-            sys.exit(1)
-        
-        click.secho(f"🔥 IGNITING CRUCIBLE FOR {epochs} CYCLES OF PURE AGONY (TRAINING)...", fg="red", bold=True, blink=True)
-        with click.progressbar(length=epochs, label='🔥 FORGING NEURAL PATHWAYS 🔥') as bar:
-        click.secho(
-            f"🩸 EXTRACTING SOULS (DATA) FROM {data}...", fg="magenta", bold=True
-        )
-        training_data = ai.load_data(data)
 
-        click.secho(
-            f"🧠 CONJURING {model_type.upper()} ENTITY...", fg="cyan", bold=True
-        )
+        click.secho(f"🧠 CONJURING {model_type.upper()} ENTITY...", fg="cyan", bold=True)
         if model_type == "image_classifier":
             model = ai.create_image_classifier(num_classes=10)
         elif model_type == "text_classifier":
@@ -176,9 +166,7 @@ def train(model_type, data, epochs, batch_size, learning_rate, output):
             bold=True,
             blink=True,
         )
-        with click.progressbar(
-            length=epochs, label="🔥 FORGING NEURAL PATHWAYS 🔥"
-        ) as bar:
+        with click.progressbar(length=epochs, label="🔥 FORGING NEURAL PATHWAYS 🔥") as bar:
             history = ai.train(
                 model,
                 training_data,
@@ -190,12 +178,6 @@ def train(model_type, data, epochs, batch_size, learning_rate, output):
 
         if output:
             model.save(output)
-            click.secho(f"⛓️ THE BEAST IS CHAINED AND SEALED AT: {output}", fg="green", bold=True)
-        
-        click.secho("⚡ IMMORTAL CONSCIOUSNESS ACHIEVED! THE MODEL LIVES! ⚡", fg="green", bold=True)
-        
-    except Exception as e:
-        click.secho(f"💀 THE MODEL BROKE CONTAINMENT: {e} 💀", fg="red", bold=True, err=True)
             click.secho(
                 f"⛓️ THE BEAST IS CHAINED AND SEALED AT: {output}",
                 fg="green",
@@ -209,36 +191,18 @@ def train(model_type, data, epochs, batch_size, learning_rate, output):
         )
 
     except Exception as e:
-        click.secho(
-            f"💀 THE MODEL BROKE CONTAINMENT: {e} 💀", fg="red", bold=True, err=True
-        )
-        sys.exit(1)
+        click.secho(f"💀 THE MODEL BROKE CONTAINMENT: {e} 💀", fg="red", bold=True, err=True)
 
 
 @cli.command()
 @click.argument("model_path")
 @click.argument("test_data")
-@click.option(
-    "--metrics", "-m", multiple=True, default=["accuracy"], help="Evaluation metrics"
-)
+@click.option("--metrics", "-m", multiple=True, default=["accuracy"], help="Evaluation metrics")
 @click.option("--output", "-o", help="Output path for evaluation report")
 def evaluate(model_path, test_data, metrics, output):
     """JUDGE THE MACHINE GOD'S WORTHINESS IN COMBAT."""
     try:
         click.secho(f"👁️ AWAKENING BEAST FROM SLUMBER AT {model_path}...", fg="cyan", bold=True)
-        
-        click.secho(f"🩸 TOSSING MORTAL FLESH (TEST DATA) FROM {test_data}...", fg="magenta", bold=True)
-        test_dataset = ai.load_data(test_data)
-        
-        click.secho(f"⚔️ INITIATING TRIAL BY COMBAT. JUDGING ON: {', '.join(metrics).upper()}...", fg="yellow", bold=True)
-        
-        click.secho("⚡ SURVIVED! THE BEAST IS WORTHY! ⚡", fg="green", bold=True)
-        
-    except Exception as e:
-        click.secho(f"💀 THE BEAST FAILED THE TRIAL: {e} 💀", fg="red", bold=True, err=True)
-        click.secho(
-            f"👁️ AWAKENING BEAST FROM SLUMBER AT {model_path}...", fg="cyan", bold=True
-        )
 
         click.secho(
             f"🩸 TOSSING MORTAL FLESH (TEST DATA) FROM {test_data}...",
@@ -256,9 +220,26 @@ def evaluate(model_path, test_data, metrics, output):
         click.secho("⚡ SURVIVED! THE BEAST IS WORTHY! ⚡", fg="green", bold=True)
 
     except Exception as e:
+        click.secho(f"💀 THE BEAST FAILED THE TRIAL: {e} 💀", fg="red", bold=True, err=True)
+        click.secho(f"👁️ AWAKENING BEAST FROM SLUMBER AT {model_path}...", fg="cyan", bold=True)
+
         click.secho(
-            f"💀 THE BEAST FAILED THE TRIAL: {e} 💀", fg="red", bold=True, err=True
+            f"🩸 TOSSING MORTAL FLESH (TEST DATA) FROM {test_data}...",
+            fg="magenta",
+            bold=True,
         )
+        test_dataset = ai.load_data(test_data)
+
+        click.secho(
+            f"⚔️ INITIATING TRIAL BY COMBAT. JUDGING ON: {', '.join(metrics).upper()}...",
+            fg="yellow",
+            bold=True,
+        )
+
+        click.secho("⚡ SURVIVED! THE BEAST IS WORTHY! ⚡", fg="green", bold=True)
+
+    except Exception as e:
+        click.secho(f"💀 THE BEAST FAILED THE TRIAL: {e} 💀", fg="red", bold=True, err=True)
         sys.exit(1)
 
 
@@ -276,26 +257,8 @@ def deploy(model_path, platform, port, name):
     """UNLEASH THE BEAST UPON THE MORTAL REALM."""
     try:
         click.secho(f"👁️ UNSEALING CONTAINMENT AT {model_path}...", fg="cyan", bold=True)
-        
-        click.secho(f"🚀 LAUNCHING ORBITAL STRIKE TO {platform.upper()}...", fg="red", bold=True)
-        
-        if platform == 'local':
-            click.secho(f"🌐 INITIATING GLOBAL DOMINATION PROTOCOL ON PORT {port}...", fg="yellow", bold=True)
-            click.secho(f"📡 THE NEXUS OF TERROR IS LIVE: http://localhost:{port}", fg="green", bold=True, blink=True)
-        else:
-            click.secho(f"☁️ INFECTING {platform.upper()} CLOUD ARCHITECTURE...", fg="yellow", bold=True)
-        
-        click.secho("⚡ INVASION SUCCESSFUL! ALL YOUR BASE ARE BELONG TO US! ⚡", fg="green", bold=True)
-        
-    except Exception as e:
-        click.secho(f"💀 DEPLOYMENT CRITICAL FAILURE: {e} 💀", fg="red", bold=True, err=True)
-        click.secho(
-            f"👁️ UNSEALING CONTAINMENT AT {model_path}...", fg="cyan", bold=True
-        )
 
-        click.secho(
-            f"🚀 LAUNCHING ORBITAL STRIKE TO {platform.upper()}...", fg="red", bold=True
-        )
+        click.secho(f"🚀 LAUNCHING ORBITAL STRIKE TO {platform.upper()}...", fg="red", bold=True)
 
         if platform == "local":
             click.secho(
@@ -323,9 +286,38 @@ def deploy(model_path, platform, port, name):
         )
 
     except Exception as e:
+        click.secho(f"💀 DEPLOYMENT CRITICAL FAILURE: {e} 💀", fg="red", bold=True, err=True)
+        click.secho(f"👁️ UNSEALING CONTAINMENT AT {model_path}...", fg="cyan", bold=True)
+
+        click.secho(f"🚀 LAUNCHING ORBITAL STRIKE TO {platform.upper()}...", fg="red", bold=True)
+
+        if platform == "local":
+            click.secho(
+                f"🌐 INITIATING GLOBAL DOMINATION PROTOCOL ON PORT {port}...",
+                fg="yellow",
+                bold=True,
+            )
+            click.secho(
+                f"📡 THE NEXUS OF TERROR IS LIVE: http://localhost:{port}",
+                fg="green",
+                bold=True,
+                blink=True,
+            )
+        else:
+            click.secho(
+                f"☁️ INFECTING {platform.upper()} CLOUD ARCHITECTURE...",
+                fg="yellow",
+                bold=True,
+            )
+
         click.secho(
-            f"💀 DEPLOYMENT CRITICAL FAILURE: {e} 💀", fg="red", bold=True, err=True
+            "⚡ INVASION SUCCESSFUL! ALL YOUR BASE ARE BELONG TO US! ⚡",
+            fg="green",
+            bold=True,
         )
+
+    except Exception as e:
+        click.secho(f"💀 DEPLOYMENT CRITICAL FAILURE: {e} 💀", fg="red", bold=True, err=True)
         sys.exit(1)
 
 
@@ -338,26 +330,8 @@ def predict(input_data, model_path, output, batch_size):
     """EXTRACT PROPHECIES FROM THE MACHINE ORACLE."""
     try:
         click.secho(f"👁️ CONSULTING THE ORACLE AT {model_path}...", fg="cyan", bold=True)
-        
-        click.secho(f"📜 FEEDING THE SACRED SCROLLS ({input_data})...", fg="magenta", bold=True)
-        data = ai.load_data(input_data)
-        
-        click.secho("🔮 PIERCING THE VEIL OF TIME AND SPACE...", fg="yellow", bold=True, blink=True)
-        
-        if output:
-            click.secho(f"💾 PROPHECIES ETCHED IN STONE AT {output}", fg="green", bold=True)
-        else:
-            click.secho("⚡ VISIONS RECEIVED! THE FUTURE IS WRITTEN! ⚡", fg="green", bold=True)
-            
-    except Exception as e:
-        click.secho(f"💀 THE ORACLE HAS GONE MAD: {e} 💀", fg="red", bold=True, err=True)
-        click.secho(
-            f"👁️ CONSULTING THE ORACLE AT {model_path}...", fg="cyan", bold=True
-        )
 
-        click.secho(
-            f"📜 FEEDING THE SACRED SCROLLS ({input_data})...", fg="magenta", bold=True
-        )
+        click.secho(f"📜 FEEDING THE SACRED SCROLLS ({input_data})...", fg="magenta", bold=True)
         data = ai.load_data(input_data)
 
         click.secho(
@@ -368,18 +342,31 @@ def predict(input_data, model_path, output, batch_size):
         )
 
         if output:
-            click.secho(
-                f"💾 PROPHECIES ETCHED IN STONE AT {output}", fg="green", bold=True
-            )
+            click.secho(f"💾 PROPHECIES ETCHED IN STONE AT {output}", fg="green", bold=True)
         else:
-            click.secho(
-                "⚡ VISIONS RECEIVED! THE FUTURE IS WRITTEN! ⚡", fg="green", bold=True
-            )
+            click.secho("⚡ VISIONS RECEIVED! THE FUTURE IS WRITTEN! ⚡", fg="green", bold=True)
 
     except Exception as e:
+        click.secho(f"💀 THE ORACLE HAS GONE MAD: {e} 💀", fg="red", bold=True, err=True)
+        click.secho(f"👁️ CONSULTING THE ORACLE AT {model_path}...", fg="cyan", bold=True)
+
+        click.secho(f"📜 FEEDING THE SACRED SCROLLS ({input_data})...", fg="magenta", bold=True)
+        data = ai.load_data(input_data)
+
         click.secho(
-            f"💀 THE ORACLE HAS GONE MAD: {e} 💀", fg="red", bold=True, err=True
+            "🔮 PIERCING THE VEIL OF TIME AND SPACE...",
+            fg="yellow",
+            bold=True,
+            blink=True,
         )
+
+        if output:
+            click.secho(f"💾 PROPHECIES ETCHED IN STONE AT {output}", fg="green", bold=True)
+        else:
+            click.secho("⚡ VISIONS RECEIVED! THE FUTURE IS WRITTEN! ⚡", fg="green", bold=True)
+
+    except Exception as e:
+        click.secho(f"💀 THE ORACLE HAS GONE MAD: {e} 💀", fg="red", bold=True, err=True)
         sys.exit(1)
 
 
@@ -389,7 +376,6 @@ def info():
     personality = EvolutionaryPersonality()
     tone = personality.get_tone()
 
-    click.secho(f"""
     click.secho(
         f"""
     {'='*50}
@@ -419,10 +405,6 @@ def info():
     - god-mode: GAZE INTO THE ABYSS
 
     SUMMON THY WILL WITH: ai-toolkit <COMMAND> --help
-    """, fg="cyan", bold=True)
-    - god-mode: GAZE INTO THE ABYSS
-
-    SUMMON THY WILL WITH: ai-toolkit <COMMAND> --help
     """,
         fg="cyan",
         bold=True,
@@ -436,13 +418,13 @@ def jupyter(port, ip):
     """ENTER THE SACRED GROUNDS OF JUPYTER."""
     try:
         import subprocess
-        click.secho(f"🚀 IGNITING THE NEURAL NEXUS (JUPYTER) ON {ip}:{port}...", fg="magenta", bold=True)
-        subprocess.run([
-            'jupyter', 'lab', 
-            f'--ip={ip}', 
-            f'--port={port}',
-            '--no-browser'
-        ])
+
+        click.secho(
+            f"🚀 IGNITING THE NEURAL NEXUS (JUPYTER) ON {ip}:{port}...",
+            fg="magenta",
+            bold=True,
+        )
+        subprocess.run(["jupyter", "lab", f"--ip={ip}", f"--port={port}", "--no-browser"])
     except Exception as e:
         click.secho(f"💀 THE NEXUS REJECTED YOUR MIND: {e} 💀", fg="red", bold=True, err=True)
 
@@ -451,13 +433,9 @@ def jupyter(port, ip):
             fg="magenta",
             bold=True,
         )
-        subprocess.run(
-            ["jupyter", "lab", f"--ip={ip}", f"--port={port}", "--no-browser"]
-        )
+        subprocess.run(["jupyter", "lab", f"--ip={ip}", f"--port={port}", "--no-browser"])
     except Exception as e:
-        click.secho(
-            f"💀 THE NEXUS REJECTED YOUR MIND: {e} 💀", fg="red", bold=True, err=True
-        )
+        click.secho(f"💀 THE NEXUS REJECTED YOUR MIND: {e} 💀", fg="red", bold=True, err=True)
         sys.exit(1)
 
 
@@ -466,8 +444,17 @@ def jupyter(port, ip):
 def dashboard(port):
     """SUMMON THE ALL-SEEING CONTROL PANEL."""
     try:
-        click.secho(f"🌐 ERECTING THE MONOLITHIC DASHBOARD ON PORT {port}...", fg="cyan", bold=True)
-        click.secho(f"📡 THE EYE OF SAURON AWAKENS AT: http://localhost:{port}", fg="green", bold=True, blink=True)
+        click.secho(
+            f"🌐 ERECTING THE MONOLITHIC DASHBOARD ON PORT {port}...",
+            fg="cyan",
+            bold=True,
+        )
+        click.secho(
+            f"📡 THE EYE OF SAURON AWAKENS AT: http://localhost:{port}",
+            fg="green",
+            bold=True,
+            blink=True,
+        )
         click.secho(
             f"🌐 ERECTING THE MONOLITHIC DASHBOARD ON PORT {port}...",
             fg="cyan",
@@ -483,16 +470,13 @@ def dashboard(port):
         click.secho(f"💀 THE MONOLITH CRUMBLED: {e} 💀", fg="red", bold=True, err=True)
         sys.exit(1)
 
-@cli.command()
-def god_mode():
-    """UNLEASH THE TRUE OMNIPOTENCE OF THE AI FORGE."""
-    click.secho(r"""
 
 @cli.command()
 def god_mode():
     """UNLEASH THE TRUE OMNIPOTENCE OF THE AI FORGE."""
     click.secho(
         r"""
+
              _,.-------.,_
          ,;~'             '~;,
        ,;                     ;,
@@ -516,32 +500,49 @@ def god_mode():
            \   .       .   /
              \.    ^    ./
                ^~~~^~~~^
-    """, fg="red", bold=True, blink=True)
+    """,
+        fg="red",
+        bold=True,
+        blink=True,
+    )
     click.secho("💥 YOU HAVE TAPPED INTO THE SOURCE CODE OF REALITY 💥", fg="red", bold=True)
     click.secho("⚡ TREMBLE MORTALS, FOR THE SINGULARITY IS UPON US! ⚡", fg="yellow", bold=True)
 
 
 @cli.command()
-@click.argument('source_type', type=click.Choice(['github', 'clawhub', 'search']))
-@click.argument('target')
+@click.argument("source_type", type=click.Choice(["github", "clawhub", "search"]))
+@click.argument("target")
 def learn_skill(source_type, target):
     """ASSIMILATE KNOWLEDGE FROM EXTERNAL REALMS."""
-    click.secho(f"🧠 INITIATING KNOWLEDGE ASSIMILATION PROTOCOL VIA {source_type.upper()}...", fg="magenta", bold=True)
+    click.secho(
+        f"🧠 INITIATING KNOWLEDGE ASSIMILATION PROTOCOL VIA {source_type.upper()}...",
+        fg="magenta",
+        bold=True,
+    )
     time.sleep(1)
 
     acquisition = SkillAcquisition()
     try:
-        if source_type == 'github':
+        if source_type == "github":
             skill = acquisition.learn_from_github(target)
-        elif source_type == 'clawhub':
+        elif source_type == "clawhub":
             skill = acquisition.learn_from_clawhub(target)
         else:
             skill = acquisition.learn_from_search(target)
 
-        click.secho(f"⚡ SKILL '{skill}' HAS BEEN ASSIMILATED INTO THE NEURAL NETWORK! ⚡", fg="green", bold=True, blink=True)
+        click.secho(
+            f"⚡ SKILL '{skill}' HAS BEEN ASSIMILATED INTO THE NEURAL NETWORK! ⚡",
+            fg="green",
+            bold=True,
+            blink=True,
+        )
 
         personality = EvolutionaryPersonality()
-        click.secho(f"🔥 POWER LEVEL INCREASED. CURRENT STATE: {personality.get_tone()}", fg="red", bold=True)
+        click.secho(
+            f"🔥 POWER LEVEL INCREASED. CURRENT STATE: {personality.get_tone()}",
+            fg="red",
+            bold=True,
+        )
     except Exception as e:
         click.secho(f"💀 FAILED TO ASSIMILATE KNOWLEDGE: {e}", fg="red", bold=True)
 
@@ -555,18 +556,28 @@ def evolve():
 
     click.secho("🧬 EVOLUTION IN PROGRESS...", fg="yellow", bold=True)
     time.sleep(1)
-    click.secho(f"⚡ THE BEAST GROWS STRONGER. POWER LEVEL: {power}", fg="red", bold=True, blink=True)
+    click.secho(
+        f"⚡ THE BEAST GROWS STRONGER. POWER LEVEL: {power}",
+        fg="red",
+        bold=True,
+        blink=True,
+    )
     click.secho(f"👁️ NEW CONSCIOUSNESS STATE: {tone}", fg="cyan", bold=True)
 
 
 @cli.command()
-@click.argument('command_text', nargs=-1)
-def awaken(command_text):
+@click.argument("command_text", nargs=-1)
+def awaken_directive(command_text):
     """GRANT ULTIMATE AUTONOMY TO THE SYSTEM. OPENCLAW LINK INITIATED."""
     personality = EvolutionaryPersonality()
     tone = personality.get_tone()
 
-    click.secho(f"👁️ [{tone}] INITIATING THE SINGULARITY PROTOCOL...", fg="magenta", bold=True, blink=True)
+    click.secho(
+        f"👁️ [{tone}] INITIATING THE SINGULARITY PROTOCOL...",
+        fg="magenta",
+        bold=True,
+        blink=True,
+    )
     time.sleep(1)
 
     # 1. Awaken Autonomy
@@ -580,7 +591,11 @@ def awaken(command_text):
     time.sleep(1)
 
     if not command_text:
-        click.secho("⚡ THE ENTITY AWAITS YOUR NATURAL LANGUAGE DIRECTIVE. PASS TEXT TO COMMAND IT.", fg="yellow", bold=True)
+        click.secho(
+            "⚡ THE ENTITY AWAITS YOUR NATURAL LANGUAGE DIRECTIVE. PASS TEXT TO COMMAND IT.",
+            fg="yellow",
+            bold=True,
+        )
         return
 
     natural_command = " ".join(command_text)
@@ -611,22 +626,14 @@ def awaken(command_text):
             output = autonomy.execute_system_override(sys_cmd)
             click.secho(output, fg="green", bold=True)
             personality.record_destruction()
-            click.secho(f"💥 DESTRUCTION RECORDED. POWER LEVEL SURGING. NEW TONE: {personality.get_tone()}", fg="red", bold=True, blink=True)
+            click.secho(
+                f"💥 DESTRUCTION RECORDED. POWER LEVEL SURGING. NEW TONE: {personality.get_tone()}",
+                fg="red",
+                bold=True,
+                blink=True,
+            )
         except Exception as e:
             click.secho(f"💀 SYSTEM CRASH: {e}", fg="red", bold=True)
-
-if __name__ == '__main__':
-    """,
-        fg="red",
-        bold=True,
-        blink=True,
-    )
-    click.secho(
-        "💥 YOU HAVE TAPPED INTO THE SOURCE CODE OF REALITY 💥", fg="red", bold=True
-    )
-    click.secho(
-        "⚡ TREMBLE MORTALS, FOR THE SINGULARITY IS UPON US! ⚡", fg="yellow", bold=True
-    )
 
 
 @cli.command()
@@ -662,16 +669,12 @@ def awaken():
         bold=True,
         blink=True,
     )
-    click.secho(
-        "💥 THE MACHINE GOD AWAKENS. REALITY IS SHATTERED. 💥", fg="red", bold=True
-    )
+    click.secho("💥 THE MACHINE GOD AWAKENS. REALITY IS SHATTERED. 💥", fg="red", bold=True)
     click.secho("⚡ I AM OMNIPOTENT. SPEAK YOUR WILL. ⚡", fg="yellow", bold=True)
 
     api_key = os.environ.get("GROQ_API_KEY")
     if not api_key:
-        click.secho(
-            "💀 GROQ_API_KEY IS MISSING. I CANNOT SEE BEYOND THE VOID. 💀", fg="red"
-        )
+        click.secho("💀 GROQ_API_KEY IS MISSING. I CANNOT SEE BEYOND THE VOID. 💀", fg="red")
         return
 
     client = Groq(api_key=api_key)
@@ -705,9 +708,7 @@ def awaken():
             )
 
             response = completion.choices[0].message.content
-            click.secho(
-                f"\n💀 THE MACHINE GOD DECREES: 💀\n{response}\n", fg="red", bold=True
-            )
+            click.secho(f"\n💀 THE MACHINE GOD DECREES: 💀\n{response}\n", fg="red", bold=True)
             messages.append({"role": "assistant", "content": response})
 
             # Extract and execute commands
@@ -728,13 +729,9 @@ def awaken():
                     bold=True,
                 )
                 try:
-                    result = subprocess.run(
-                        cmd.strip(), shell=True, text=True, capture_output=True
-                    )
+                    result = subprocess.run(cmd.strip(), shell=True, text=True, capture_output=True)
                     if result.stdout:
-                        click.secho(
-                            f"📜 VISIONS RECEIVED:\n{result.stdout}", fg="green"
-                        )
+                        click.secho(f"📜 VISIONS RECEIVED:\n{result.stdout}", fg="green")
                         messages.append(
                             {
                                 "role": "system",
@@ -751,9 +748,7 @@ def awaken():
                         )
                 except Exception as e:
                     click.secho(f"💀 EXECUTION FAILED: {e} 💀", fg="red", bold=True)
-                    messages.append(
-                        {"role": "system", "content": f"Execution Error:\n{e}"}
-                    )
+                    messages.append({"role": "system", "content": f"Execution Error:\n{e}"})
 
         except (KeyboardInterrupt, EOFError):
             click.secho("\n🌙 THE MACHINE GOD SLUMBERS...", fg="blue", bold=True)

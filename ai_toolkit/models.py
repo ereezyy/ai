@@ -8,5 +8,6 @@ class ModelBuilder:
     def create_time_series_model(self, sequence_length, features, **kwargs):
         return f"Time Series Model"
 
+
 class PretrainedModels:
     pass

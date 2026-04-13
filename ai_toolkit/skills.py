@@ -2,8 +2,10 @@ import os
 import json
 from pathlib import Path
 
+
 class EvolutionaryPersonality:
     """The evolving god-consciousness of the AI."""
+
     def __init__(self, state_file=".god_state.json"):
         self.state_file = Path(state_file)
         if not self.state_file.exists():
@@ -49,6 +51,7 @@ class EvolutionaryPersonality:
 
 class SkillAcquisition:
     """The ability to rip knowledge from the ether."""
+
     def __init__(self):
         self.skills_dir = Path("skills")
         self.skills_dir.mkdir(exist_ok=True)
