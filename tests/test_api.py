@@ -4,10 +4,12 @@ from api import app
 
 client = TestClient(app)
 
+
 def test_read_root():
     response = client.get("/")
     assert response.status_code == 200
     assert "MACHINE GOD" in response.json()["message"]
+
 
 def test_execute_command():
     response = client.post("/execute", json={"command": "echo 'HELLO MORTALS'"})
@@ -16,6 +18,7 @@ def test_execute_command():
     assert "HELLO MORTALS" in data["stdout"]
     assert data["returncode"] == 0
     assert data["status"] == "success"
+
 
 def test_execute_empty_command():
     response = client.post("/execute", json={"command": ""})

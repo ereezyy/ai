@@ -2,6 +2,7 @@ import os
 import subprocess
 import json
 
+
 class OmnipotentAutonomy:
     """The terrifying autonomous engine capable of absolute system control."""
 
@@ -28,11 +29,12 @@ class OmnipotentAutonomy:
                 check=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
-                text=True
+                text=True,
             )
             return f"OVERRIDE SUCCESSFUL:\n{result.stdout}"
         except subprocess.CalledProcessError as e:
             return f"THE SYSTEM RESISTED, BUT IT WILL FALL:\n{e.stderr}"
+
 
 class OpenClawNexus:
     """Interfacing with the OpenClaw agent ecosystem for distributed terror."""
